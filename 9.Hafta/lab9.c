@@ -9,12 +9,12 @@ typedef struct Student{
     float average;
     struct Student *next;
 } node;
-void menu(void);
 void addStudent(void);
 void showGrades(void);
 void updateStudent(void);
 void showAverage(void);
 void showBestStudent(void);
+void menu(void);
 
 node *head = NULL;
 
@@ -91,16 +91,16 @@ void updateStudent(){
     while( p != NULL ){
         if( p->studentNumber == s_number ){
             system("cls");
-            printf("\xBA Current Student Number:  %d\n", p->studentNumber);
+            printf("\xBA Current Student Number: %d\n", p->studentNumber);
             printf("\xBA Enter New Student Number: ");
             scanf("%d", &p->studentNumber);
-            printf("\xBA Current Student Name:    %s\n", p->name);
+            printf("\xBA Current Student Name: %s\n", p->name);
             printf("\xBA Enter New Student Name: ");
             scanf("%s", p->name);
-            printf("\xBA Current Midterm Grade:   %.2f\n", p->midtermGrade);
+            printf("\xBA Current Midterm Grade: %.2f\n", p->midtermGrade);
             printf("\xBA Enter New Midterm Grade: ");
             scanf("%f", &p->midtermGrade);
-            printf("\xBA Current Final Grade:     %.2f\n", p->finalGrade);
+            printf("\xBA Current Final Grade: %.2f\n", p->finalGrade);
             printf("\xBA Enter New Final Grade: ");
             scanf("%f", &p->finalGrade);
             p->average = 0.4 * p->midtermGrade + 0.6 * p->finalGrade;
