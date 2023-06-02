@@ -12,11 +12,11 @@ typedef struct Patient{
 } Patient;
 
 FILE *openfile(const char*);
-void addPatient(const char*, FILE*);
-void editPatient(const char*, FILE*);
-void deletePatient(const char*, FILE*);
-void searchPatient(const char*, FILE*);
-void listPatients(const char*, FILE*);
+void addPatient(FILE*);
+void editPatient(FILE*);
+void deletePatient(FILE*);
+void searchPatient(FILE*);
+void listPatients(FILE*);
 void clearInput(void);
 
 int main(void){
@@ -45,19 +45,19 @@ int main(void){
         
         switch(opt){
             case '1':
-                addPatient(filename,fp);
+                addPatient(fp);
                 break;
             case '2':
-                editPatient(filename,fp);
+                editPatient(fp);
                 break;
             case '3':
-                deletePatient(filename,fp);
+                deletePatient(fp);
                 break;
             case '4':
-                searchPatient(filename,fp);
+                searchPatient(fp);
                 break;
             case '5':
-                listPatients(filename,fp);
+                listPatients(fp);
                 break;
             case '0':
                 system("cls");
@@ -78,7 +78,7 @@ FILE *openfile(const char *filename){
             return NULL;
     return fp;
 }
-void addPatient(const char *filename, FILE *fp){
+void addPatient(FILE *fp){
     system("cls");
     int i, n;
     printf("Eklenecek hasta sayisini giriniz: ");
@@ -115,9 +115,9 @@ void addPatient(const char *filename, FILE *fp){
         fwrite(&patients[i], sizeof(Patient), 1, fp);
     }
 }
-void editPatient(const char *filename, FILE *fp){
+void editPatient(FILE *fp){
     system("cls");
-    int ch, p_no;
+    int p_no;
     Patient patient = {0};
     printf("Duzenlemek istediginiz hasta numarasini giriniz: ");
     scanf("%d", &p_no); clearInput();
@@ -141,7 +141,7 @@ void editPatient(const char *filename, FILE *fp){
         fwrite(&patient, sizeof(Patient), 1, fp);
     }
 }
-void deletePatient(const char *filename, FILE *fp){
+void deletePatient(FILE *fp){
     system("cls");
     int p_no;
     Patient control, patient = {0};
@@ -157,7 +157,7 @@ void deletePatient(const char *filename, FILE *fp){
         fwrite(&patient, sizeof(Patient), 1, fp);
     }
 }
-void searchPatient(const char *filename, FILE *fp){
+void searchPatient(FILE *fp){
     system("cls");
     int p_no;
     Patient patient = {0};
@@ -176,7 +176,7 @@ void searchPatient(const char *filename, FILE *fp){
     
     getch();
 }
-void listPatients(const char *filename, FILE *fp){
+void listPatients(FILE *fp){
     system("cls");
     Patient patient = {0};
     printf("%-15s %30s %15s %30s\n\n", "Hasta Numarasi", "Isim Soyisim", "Yas", "Hastalik");
